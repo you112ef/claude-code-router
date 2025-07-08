@@ -1,0 +1,35 @@
+import {DefaultTheme} from 'react-native-paper';
+
+export const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#2196F3',
+    primaryContainer: '#BBDEFB',
+    secondary: '#FF4081',
+    secondaryContainer: '#FCE4EC',
+    surface: '#FFFFFF',
+    surfaceVariant: '#F5F5F5',
+    background: '#FAFAFA',
+    error: '#F44336',
+    errorContainer: '#FFEBEE',
+    onPrimary: '#FFFFFF',
+    onSecondary: '#FFFFFF',
+    onSurface: '#212121',
+    onBackground: '#212121',
+    onError: '#FFFFFF',
+    outline: '#757575',
+    outlineVariant: '#E0E0E0',
+    inverseSurface: '#212121',
+    inverseOnSurface: '#FFFFFF',
+    inversePrimary: '#64B5F6',
+    shadow: '#000000',
+    scrim: '#000000',
+    backdrop: 'rgba(0, 0, 0, 0.5)',
+    // ألوان مخصصة
+    success: '#4CAF50',
+    warning: '#FF9800',
+    info: '#2196F3',
+  },
+  roundness: 8,
+};
