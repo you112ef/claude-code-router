@@ -1,236 +1,327 @@
-# Claude Code Router
+# Claude Code Router - Android
 
-> This is a tool for routing Claude Code requests to different models, and you can customize any request.
+<div align="center">
 
-![](screenshoots/claude-code.png)
+![Claude Code Router](https://img.shields.io/badge/Claude%20Code-Router-blue?style=for-the-badge&logo=android)
+![React Native](https://img.shields.io/badge/React%20Native-0.73-blue?style=for-the-badge&logo=react)
+![Node.js](https://img.shields.io/badge/Node.js-Mobile-green?style=for-the-badge&logo=nodedotjs)
+![Local AI](https://img.shields.io/badge/Local%20AI-Enabled-purple?style=for-the-badge&logo=brain)
 
-## Usage
+**تطبيق أندرويد متطور لتوجيه طلبات Claude Code إلى مقدمي خدمة ذكاء اصطناعي مختلفين مع دعم النماذج المحلية**
 
-1. Install Claude Code
+[📱 تحميل APK](#التحميل) • [🚀 البدء السريع](#البدء-السريع) • [📖 الوثائق](#الوثائق) • [🤝 المساهمة](#المساهمة)
 
-```shell
-npm install -g @anthropic-ai/claude-code
+</div>
+
+---
+
+## ✨ الميزات الرئيسية
+
+### 🏠 إدارة الخدمة الشاملة
+- **تحكم كامل**: بدء وإيقاف خدمة Claude Code Router
+- **مراقبة في الوقت الفعلي**: عرض حالة الخدمة والمنفذ المستخدم
+- **إشعارات ذكية**: تنبيهات عند تغيير حالة الخدمة
+
+### ⚙️ إعدادات متقدمة
+- **إدارة مقدمي الخدمة**: إضافة وتعديل مقدمي خدمة متعددين (OpenAI, DeepSeek, OpenRouter, وغيرها)
+- **توجيه ذكي**: توجيه الطلبات تلقائياً حسب الحجم ونوع المهمة
+- **تخصيص شامل**: إعدادات مرنة لكل مقدم خدمة
+
+### 🧠 ذكاء اصطناعي محلي متقدم
+- **يعمل بدون انترنت**: نماذج AI محلية على جهازك
+- **دعم متعدد التقنيات**: TensorFlow Lite, ONNX Runtime, GGML
+- **نماذج محسنة**: Phi-3, TinyLlama, Qwen2.5-Coder وغيرها
+- **خصوصية كاملة**: لا يتم إرسال أي بيانات خارج الجهاز
+
+### 🔌 نظام إضافات قوي
+- **إضافات مدمجة**: تصفية أدوات Jupyter، تحسين استخدام الأدوات
+- **إضافات مخصصة**: إنشاء إضافاتك الخاصة بـ JavaScript
+- **سهولة الإدارة**: تفعيل وإلغاء تفعيل الإضافات بنقرة واحدة
+
+### 📊 مراقبة ومتابعة شاملة
+- **سجلات مفصلة**: عرض جميع عمليات النظام في الوقت الفعلي
+- **تصفية ذكية**: البحث والتصفية حسب مستوى الخطورة
+- **إحصائيات مفيدة**: عدد الطلبات، الأخطاء، والتحذيرات
+
+---
+
+## 🏗️ المعمارية التقنية
+
+### 📱 الواجهة الأمامية
+- **React Native 0.73**: واجهة مستخدم حديثة ومتجاوبة
+- **React Native Paper**: مكونات Material Design
+- **React Navigation**: نظام تنقل سلس ومتقدم
+- **TypeScript**: أمان نوع البيانات وتطوير أفضل
+
+### 🖥️ الخادم المحلي
+- **Node.js Mobile**: خادم Node.js يعمل مباشرة على الأندرويد
+- **Express.js**: API سريع وموثوق
+- **Middleware System**: نظام وسطاء مرن وقابل للتوسع
+- **Plugin Architecture**: معمارية إضافات قابلة للتخصيص
+
+### 🤖 الذكاء الاصطناعي المحلي
+- **TensorFlow Lite**: تشغيل نماذج TensorFlow محلياً
+- **ONNX Runtime**: دعم نماذج ONNX عالية الأداء
+- **GGML Support**: تشغيل نماذج GGML (مثل Llama)
+- **Native Integration**: تكامل محلي مع Android NDK
+
+---
+
+## 🚀 البدء السريع
+
+### متطلبات النظام
+- **Android**: 7.0+ (API level 24)
+- **RAM**: 4GB+ (يُنصح بـ 6GB+ للنماذج المحلية)
+- **Storage**: 8GB+ مساحة فارغة
+- **CPU**: ARM64 أو x86_64
+
+### التثبيت
+
+#### 📱 من GitHub Releases
+1. انتقل إلى [صفحة الإصدارات](https://github.com/your-repo/claude-code-router-android/releases)
+2. حمل أحدث ملف APK
+3. فعّل "تثبيت من مصادر غير معروفة" في إعدادات الأندرويد
+4. ثبت التطبيق
+
+#### 🔨 البناء من المصدر
+```bash
+# استنساخ المستودع
+git clone https://github.com/your-repo/claude-code-router-android.git
+cd claude-code-router-android
+
+# تثبيت التبعيات
+npm install
+
+# بناء مشروع Node.js
+npm run build:js
+
+# بناء APK
+cd android
+./gradlew assembleRelease
 ```
 
-2. Install Claude Code Router
+### الإعداد الأولي
 
-```shell
-npm install -g @musistudio/claude-code-router
-```
+1. **افتح التطبيق** وانتقل إلى تبويب "الإعدادات"
+2. **أضف مقدم خدمة**:
+   ```
+   الاسم: OpenAI
+   الرابط: https://api.openai.com/v1
+   المفتاح: sk-your-api-key
+   النماذج: gpt-3.5-turbo, gpt-4
+   ```
+3. **ابدأ الخدمة** من تبويب "الرئيسية"
+4. **اختياري**: حمل نموذجاً محلياً من تبويب "الذكاء المحلي"
 
-3. Start Claude Code by claude-code-router
+---
 
-```shell
-ccr code
-```
+## 📖 الوثائق التفصيلية
 
-4. Configure routing[optional]  
-   Set up your `~/.claude-code-router/config.json` file like this:
+### 🔧 إعداد مقدمي الخدمة
 
+#### OpenAI
 ```json
 {
-  "OPENAI_API_KEY": "sk-xxx",
-  "OPENAI_BASE_URL": "https://api.deepseek.com",
-  "OPENAI_MODEL": "deepseek-chat",
-  "Providers": [
-    {
-      "name": "openrouter",
-      "api_base_url": "https://openrouter.ai/api/v1",
-      "api_key": "sk-xxx",
-      "models": [
-        "google/gemini-2.5-pro-preview",
-        "anthropic/claude-sonnet-4",
-        "anthropic/claude-3.5-sonnet",
-        "anthropic/claude-3.7-sonnet:thinking"
-      ]
-    },
-    {
-      "name": "deepseek",
-      "api_base_url": "https://api.deepseek.com",
-      "api_key": "sk-xxx",
-      "models": ["deepseek-reasoner"]
-    },
-    {
-      "name": "ollama",
-      "api_base_url": "http://localhost:11434/v1",
-      "api_key": "ollama",
-      "models": ["qwen2.5-coder:latest"]
-    }
-  ],
-  "Router": {
-    "background": "ollama,qwen2.5-coder:latest",
-    "think": "deepseek,deepseek-reasoner",
-    "longContext": "openrouter,google/gemini-2.5-pro-preview"
+  "name": "openai",
+  "api_base_url": "https://api.openai.com/v1",
+  "api_key": "sk-your-openai-key",
+  "models": ["gpt-3.5-turbo", "gpt-4", "gpt-4-turbo"]
+}
+```
+
+#### DeepSeek
+```json
+{
+  "name": "deepseek",
+  "api_base_url": "https://api.deepseek.com",
+  "api_key": "sk-your-deepseek-key",
+  "models": ["deepseek-chat", "deepseek-coder", "deepseek-reasoner"]
+}
+```
+
+#### OpenRouter
+```json
+{
+  "name": "openrouter",
+  "api_base_url": "https://openrouter.ai/api/v1",
+  "api_key": "sk-your-openrouter-key",
+  "models": [
+    "anthropic/claude-3.5-sonnet",
+    "google/gemini-2.0-flash-exp",
+    "meta-llama/llama-3.2-90b-vision-instruct"
+  ]
+}
+```
+
+### 🧠 النماذج المحلية المدعومة
+
+| النموذج | الحجم | النوع | الوصف |
+|---------|-------|-------|--------|
+| **Phi-3 Mini** | 2.4GB | GGML | نموذج سريع للمحادثات العامة |
+| **TinyLlama** | 1.1GB | GGML | نموذج خفيف للأجهزة المحدودة |
+| **Qwen2.5-Coder** | 1.5GB | GGML | متخصص في البرمجة والكود |
+
+### 🔌 تطوير الإضافات
+
+إنشاء إضافة جديدة:
+
+```javascript
+// مثال: إضافة تصفية اللغة
+function process(requestBody) {
+  // تصفية المحتوى غير المرغوب
+  if (requestBody.messages) {
+    requestBody.messages = requestBody.messages.filter(msg => 
+      !msg.content.includes('محتوى غير مرغوب')
+    );
   }
+  
+  return requestBody;
 }
+
+module.exports = { process };
 ```
 
-- `background`  
-  This model will be used to handle some background tasks([background-token-usage](https://docs.anthropic.com/en/docs/claude-code/costs#background-token-usage)). Based on my tests, it doesn’t require high intelligence. I’m using the qwen-coder-2.5:7b model running locally on my MacBook Pro M1 (32GB) via Ollama.
-  If your computer can’t run Ollama, you can also use some free models, such as qwen-coder-2.5:3b.
+### 🎯 التوجيه الذكي
 
-- `think`  
-  This model will be used when enabling Claude Code to perform reasoning. However, reasoning budget control has not yet been implemented (since the DeepSeek-R1 model does not support it), so there is currently no difference between using UltraThink and Think modes.
-  It is worth noting that Plan Mode also use this model to achieve better planning results.  
-  Note: The reasoning process via the official DeepSeek API may be very slow, so you may need to wait for an extended period of time.
+يقوم النظام بتوجيه الطلبات تلقائياً:
 
-- `longContext`  
-  This model will be used when the context length exceeds 32K (this value may be modified in the future). You can route the request to a model that performs well with long contexts (I’ve chosen google/gemini-2.5-pro-preview). This scenario has not been thoroughly tested yet, so if you encounter any issues, please submit an issue.
+- **المهام الخلفية** → نماذج محلية أو مقدمين اقتصاديين
+- **التفكير المعقد** → نماذج متقدمة مثل DeepSeek Reasoner
+- **السياق الطويل** → نماذج بسياق كبير مثل Gemini 2.0
 
-- model command  
-  You can also switch models within Claude Code by using the `/model` command. The format is: `provider,model`, like this:  
-  `/model openrouter,anthropic/claude-3.5-sonnet`  
-  This will use the anthropic/claude-3.5-sonnet model provided by OpenRouter to handle all subsequent tasks.
+---
 
-## Features
+## 📱 لقطات الشاشة
 
-- [x] Support change models
-- [x] Github Actions
-- [ ] More robust plugin support
-- [ ] More detailed logs
-- [ ] Support image
-- [ ] Support web search
+<div align="center">
 
-## Plugins
-You can modify or enhance Claude Code’s functionality by installing plugins. The mechanism works by using middleware to modify request parameters — this allows you to rewrite prompts or add/remove tools.
+### 🏠 الشاشة الرئيسية
+![Home Screen](screenshots/home.png)
 
-To use a plugin, place it in the ~/.claude-code-router/plugins/ directory and specify the plugin name in config.js using the `usePlugins` option.like this
-```json
-// ~/.claud-code-router/config.json
-{
-  ...,
-  "usePlugins": ["notebook-tools-filter", "toolcall-improvement"]
-}
+### ⚙️ إدارة الإعدادات
+![Config Screen](screenshots/config.png)
+
+### 🧠 الذكاء المحلي
+![Local AI Screen](screenshots/localai.png)
+
+### 🔌 نظام الإضافات
+![Plugins Screen](screenshots/plugins.png)
+
+### 📊 السجلات والمراقبة
+![Logs Screen](screenshots/logs.png)
+
+</div>
+
+---
+
+## 🔄 CI/CD والتطوير
+
+### GitHub Actions
+يتم بناء APK تلقائياً عند:
+- **Push** إلى فرع `main` أو `develop`
+- **Pull Request** جديد
+- **Release** جديد
+
+### بناء محلي
+```bash
+# تشغيل في وضع التطوير
+npm start
+npm run android
+
+# بناء الإنتاج
+npm run build:js
+cd android && ./gradlew assembleRelease
+
+# اختبار الكود
+npm run lint
+npm test
 ```
 
-Currently, the following plugins are available:
-
-
-- **notebook-tools-filter**    
-This plugin filters out tool calls related to Jupyter notebooks (.ipynb files). You can use it if your work does not involve Jupyter.
-
-
-- **toolcall-improvement**    
-If your LLM doesn’t handle tool usage well (for example, always returning code as plain text instead of modifying files — such as with deepseek-v3), you can use this plugin.    
-This plugin simply adds the following system prompt. If you have a better prompt, you can modify it.
-```markdown
-## **Important Instruction:**  
-You must use tools as frequently and accurately as possible to help the user solve their problem.  
-Prioritize tool usage whenever it can enhance accuracy, efficiency, or the quality of the response.
+### هيكل المشروع
+```
+claude-code-router-android/
+├── src/                          # كود React Native
+│   ├── components/              # مكونات قابلة للإعادة
+│   ├── screens/                 # شاشات التطبيق
+│   ├── services/                # خدمات التطبيق
+│   ├── contexts/                # React Context
+│   └── utils/                   # أدوات مساعدة
+├── nodejs-assets/               # مشروع Node.js
+│   └── nodejs-project/
+│       ├── main.js              # نقطة الدخول
+│       ├── middlewares/         # وسطاء Express
+│       ├── utils/               # أدوات Node.js
+│       └── plugins/             # الإضافات
+├── android/                     # مشروع Android
+│   ├── app/                     # تطبيق Android الرئيسي
+│   └── gradle/                  # إعدادات Gradle
+├── .github/workflows/           # GitHub Actions
+└── scripts/                     # سكريبت البناء
 ```
 
+---
 
-## Github Actions
-You just need to install `Claude Code Actions` in your repository according to the [official documentation](https://docs.anthropic.com/en/docs/claude-code/github-actions). For `ANTHROPIC_API_KEY`, you can use any string. Then, modify your `.github/workflows/claude.yaml` file to include claude-code-router, like this:
-```yaml
-name: Claude Code
+## 🤝 المساهمة
 
-on:
-  issue_comment:
-    types: [created]
-  pull_request_review_comment:
-    types: [created]
-  issues:
-    types: [opened, assigned]
-  pull_request_review:
-    types: [submitted]
+نرحب بمساهماتكم! يرجى اتباع الخطوات التالية:
 
-jobs:
-  claude:
-    if: |
-      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
-      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: read
-      issues: read
-      id-token: write
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-      
-      - name: Prepare Environment
-        run: |
-          curl -fsSL https://bun.sh/install | bash
-          mkdir -p $HOME/.claude-code-router
-          cat << 'EOF' > $HOME/.claude-code-router/config.json
-          {
-            "log": true,
-            "OPENAI_API_KEY": "${{ secrets.OPENAI_API_KEY }}",
-            "OPENAI_BASE_URL": "https://api.deepseek.com",
-            "OPENAI_MODEL": "deepseek-chat"
-          }
-          EOF
-        shell: bash
-        
-      - name: Start Claude Code Router
-        run: |
-          nohup ~/.bun/bin/bunx @musistudio/claude-code-router@1.0.8 start &
-        shell: bash
+### 🐛 الإبلاغ عن الأخطاء
+1. تحقق من [القضايا الموجودة](https://github.com/your-repo/claude-code-router-android/issues)
+2. أنشئ قضية جديدة مع وصف مفصل
+3. أضف لقطات شاشة إن أمكن
 
-      - name: Run Claude Code
-        id: claude
-        uses: anthropics/claude-code-action@beta
-        env:
-          ANTHROPIC_BASE_URL: http://localhost:3456
-        with:
-          anthropic_api_key: "test"
-```
-You can modify the contents of `$HOME/.claude-code-router/config.json` as needed.
-GitHub Actions support allows you to trigger Claude Code at specific times, which opens up some interesting possibilities.
+### 💡 اقتراح ميزات جديدة
+1. أنشئ **Discussion** جديدة
+2. اشرح الميزة والفائدة منها
+3. ناقش التنفيذ مع المجتمع
 
-For example, between 00:30 and 08:30 Beijing Time, using the official DeepSeek API:
+### 🔧 المساهمة بالكود
+1. **Fork** المستودع
+2. أنشئ فرعاً جديداً: `git checkout -b feature/amazing-feature`
+3. **Commit** تغييراتك: `git commit -m 'Add amazing feature'`
+4. **Push** للفرع: `git push origin feature/amazing-feature`
+5. أنشئ **Pull Request**
 
-- The cost of the `deepseek-v3` model is only 50% of the normal time.
+### 📋 معايير الكود
+- استخدم **TypeScript** للملفات الجديدة
+- اتبع **ESLint** المعدة في المشروع
+- أضف **تعليقات** باللغة العربية
+- اكتب **اختبارات** للميزات الجديدة
 
-- The `deepseek-r1` model is just 25% of the normal time.
+---
 
-So maybe in the future, I’ll describe detailed tasks for Claude Code ahead of time and let it run during these discounted hours to reduce costs?
+## 📜 الترخيص
 
+هذا المشروع مرخص تحت [رخصة MIT](LICENSE) - راجع ملف الترخيص للتفاصيل.
 
-## Some tips:
+---
 
-Now you can use deepseek-v3 models directly without using any plugins.
+## 🙏 الشكر والتقدير
 
-If you’re using the DeepSeek API provided by the official website, you might encounter an “exceeding context” error after several rounds of conversation (since the official API only supports a 64K context window). In this case, you’ll need to discard the previous context and start fresh. Alternatively, you can use ByteDance’s DeepSeek API, which offers a 128K context window and supports KV cache.
+- **[Claude Code](https://claude.ai/code)** - الإلهام الأساسي للمشروع
+- **[React Native](https://reactnative.dev/)** - إطار عمل التطبيق
+- **[nodejs-mobile](https://github.com/nodejs-mobile/nodejs-mobile-react-native)** - تشغيل Node.js على الأندرويد
+- **[TensorFlow Lite](https://www.tensorflow.org/lite)** - نماذج الذكاء الاصطناعي المحلية
+- **[DeepSeek](https://deepseek.com/)** - نماذج ذكاء اصطناعي متطورة
+- **[OpenRouter](https://openrouter.ai/)** - الوصول لنماذج متعددة
 
-![](screenshoots/contexterror.jpg)
+---
 
-Note: claude code consumes a huge amount of tokens, but thanks to DeepSeek’s low cost, you can use claude code at a fraction of Claude’s price, and you don’t need to subscribe to the Claude Max plan.
+## 📞 التواصل والدعم
 
-Some interesting points: Based on my testing, including a lot of context information can help narrow the performance gap between these LLM models. For instance, when I used Claude-4 in VSCode Copilot to handle a Flutter issue, it messed up the files in three rounds of conversation, and I had to roll everything back. However, when I used claude code with DeepSeek, after three or four rounds of conversation, I finally managed to complete my task—and the cost was less than 1 RMB!
+- **GitHub Issues**: [الإبلاغ عن المشاكل](https://github.com/your-repo/claude-code-router-android/issues)
+- **GitHub Discussions**: [المناقشات العامة](https://github.com/your-repo/claude-code-router-android/discussions)
+- **Email**: support@claudecoderouter.app
 
-## Some articles:
+---
 
-1. [Project Motivation and Principles](blog/en/project-motivation-and-how-it-works.md) ([中文版看这里](blog/zh/项目初衷及原理.md))
+<div align="center">
 
-## Buy me a coffee
+**صُنع بـ ❤️ لمجتمع المطورين العرب**
 
-If you find this project helpful, you can choose to sponsor the author with a cup of coffee. Please provide your GitHub information so I can add you to the sponsor list below.  
+![Stars](https://img.shields.io/github/stars/your-repo/claude-code-router-android?style=social)
+![Forks](https://img.shields.io/github/forks/your-repo/claude-code-router-android?style=social)
+![Issues](https://img.shields.io/github/issues/your-repo/claude-code-router-android)
+![License](https://img.shields.io/github/license/your-repo/claude-code-router-android)
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F1F31GN2GM)
-
-<table>
-  <tr>
-    <td><img src="/blog/images/alipay.jpg" width="200" /></td>
-    <td><img src="/blog/images/wechat.jpg" width="200" /></td>
-  </tr>
-</table>
-
-## Sponsors
-
-Thanks to the following sponsors:
-
-@Simon Leischnig (If you see this, feel free to contact me and I can update it with your GitHub information)    
-[@duanshuaimin](https://github.com/duanshuaimin)     
-[@vrgitadmin](https://github.com/vrgitadmin)     
-@*o   (可通过主页邮箱联系我修改github用户名)     
-[@ceilwoo](https://github.com/ceilwoo)      
-@*说  (可通过主页邮箱联系我修改github用户名)     
-@*更  (可通过主页邮箱联系我修改github用户名)  
-@K*g  (可通过主页邮箱联系我修改github用户名)         
+</div>
