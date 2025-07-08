@@ -49,18 +49,16 @@ jobs:
       uses: actions/cache@v3
       with:
         path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('claude-code-router-android/**/package-lock.json') }}
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
           
     - name: Install dependencies
       run: |
-        cd claude-code-router-android
         npm ci
         
     - name: Build Node.js project
       run: |
-        cd claude-code-router-android
         node scripts/build-nodejs.js
       
     - name: Setup React Native CLI
@@ -68,23 +66,24 @@ jobs:
       
     - name: Generate debug keystore
       run: |
-        mkdir -p claude-code-router-android/android/app
-        keytool -genkeypair -v -storetype PKCS12 -keystore claude-code-router-android/android/app/debug.keystore -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
+        mkdir -p android/app
+        keytool -genkeypair -v -storetype PKCS12 -keystore android/app/debug.keystore -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=Android Debug,O=Android,C=US"
         
     - name: Make gradlew executable
-      run: chmod +x claude-code-router-android/android/gradlew
+      run: chmod +x android/gradlew
       
     - name: Build APK
       run: |
-        cd claude-code-router-android/android
+        cd android
+        ./gradlew assembleRelease --no-daemon --stacktrace
         ./gradlew assembleRelease --no-daemon --stacktrace
         
     - name: Sign APK
       run: |
         # إنشاء keystore للإنتاج إذا لم يكن موجوداً
-        if [ ! -f claude-code-router-android/android/app/release.keystore ]; then
+        if [ ! -f android/app/release.keystore ]; then
           keytool -genkeypair -v -storetype PKCS12 \
-            -keystore claude-code-router-android/android/app/release.keystore \
+            -keystore android/app/release.keystore \
             -alias release \
             -keyalg RSA \
             -keysize 2048 \
@@ -96,29 +95,29 @@ jobs:
         
         # توقيع APK
         $ANDROID_HOME/build-tools/34.0.0/apksigner sign \
-          --ks claude-code-router-android/android/app/release.keystore \
+          --ks android/app/release.keystore \
           --ks-key-alias release \
           --ks-pass pass:claudecoderelease \
           --key-pass pass:claudecoderelease \
-          --out claude-code-router-android/android/app/build/outputs/apk/release/app-release-signed.apk \
-          claude-code-router-android/android/app/build/outputs/apk/release/app-release-unsigned.apk
+          --out android/app/build/outputs/apk/release/app-release-signed.apk \
+          android/app/build/outputs/apk/release/app-release-unsigned.apk
           
     - name: Verify APK
       run: |
-        $ANDROID_HOME/build-tools/34.0.0/aapt dump badging claude-code-router-android/android/app/build/outputs/apk/release/app-release-signed.apk
+        $ANDROID_HOME/build-tools/34.0.0/aapt dump badging android/app/build/outputs/apk/release/app-release-signed.apk
         
     - name: Get APK info
       id: apk_info
       run: |
-        APK_SIZE=$(du -h claude-code-router-android/android/app/build/outputs/apk/release/app-release-signed.apk | cut -f1)
+        APK_SIZE=$(du -h android/app/build/outputs/apk/release/app-release-signed.apk | cut -f1)
         echo "apk_size=$APK_SIZE" >> $GITHUB_OUTPUT
-        echo "apk_path=claude-code-router-android/android/app/build/outputs/apk/release/app-release-signed.apk" >> $GITHUB_OUTPUT
+        echo "apk_path=android/app/build/outputs/apk/release/app-release-signed.apk" >> $GITHUB_OUTPUT
         
     - name: Upload APK artifact
       uses: actions/upload-artifact@v4
       with:
         name: claude-code-router-${{ github.sha }}
-        path: claude-code-router-android/android/app/build/outputs/apk/release/app-release-signed.apk
+        path: android/app/build/outputs/apk/release/app-release-signed.apk
         retention-days: 30
         
     - name: Upload to Release (if release)
@@ -128,7 +127,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: claude-code-router-android/android/app/build/outputs/apk/release/app-release-signed.apk
+        asset_path: android/app/build/outputs/apk/release/app-release-signed.apk
         asset_name: claude-code-router-${{ github.event.release.tag_name }}.apk
         asset_content_type: application/vnd.android.package-archive
         
@@ -187,22 +186,18 @@ jobs:
         
     - name: Install dependencies
       run: |
-        cd claude-code-router-android
         npm ci
         
     - name: Run TypeScript check
       run: |
-        cd claude-code-router-android
         npx tsc --noEmit
         
     - name: Run ESLint
       run: |
-        cd claude-code-router-android
         npm run lint || echo "Linting completed with warnings"
         
     - name: Run tests
       run: |
-        cd claude-code-router-android
         npm test || echo "Tests completed"
       
   security:
@@ -213,12 +208,11 @@ jobs:
       
     - name: Run security audit
       run: |
-        cd claude-code-router-android
         npm audit --audit-level=high || echo "Security audit completed with warnings"
         
     - name: Check for secrets
       uses: trufflesecurity/trufflehog@main
       with:
-        path: ./claude-code-router-android
+        path: ./
         base: main
         head: HEAD
